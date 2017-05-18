@@ -1,0 +1,13 @@
+def Front ü | ö | e | i ;
+def Back u | o | a | ı ;
+def Consonant b | c | d | g | ğ | k | p | t | ç | y | m | n | s | v | l | z | r | ş | ҫ ;
+def Symbol Front | Back | Consonant ;
+def Frontsyl (Symbol) Front (Symbol) ;
+def Backsyl (Symbol) Back (Symbol) ;
+def Syllable Frontsyl | Backsyl ;
+def Target V ;
+read lexc turkverbs.lexc
+def Lexicon;
+def Frontreplace Target -> e || [Frontsyl (Consonant)] _ ;
+def Backreplace Target -> a || [Backsyl (Consonant)] _ ;
+regex Lexicon .o. Frontreplace .o. Backreplace ;
