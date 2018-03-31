@@ -61,7 +61,65 @@ for train, test in kfold.split(X):
     print(classification_report(y_test, y_pred))
     fscores.append(f1_score(y_test, y_pred))
 
+# {'alpha': 1, 'fit_prior': True}
+#              precision    recall  f1-score   support
+#
+#           0       0.59      0.69      0.63        29
+#           1       0.61      0.50      0.55        28
+#
+# avg / total       0.60      0.60      0.59        57
+#
+# {'alpha': 5, 'fit_prior': True}
+#              precision    recall  f1-score   support
+#
+#           0       0.73      0.86      0.79        28
+#           1       0.83      0.69      0.75        29
+#
+# avg / total       0.78      0.77      0.77        57
+#
+# {'alpha': 5, 'fit_prior': True}
+#              precision    recall  f1-score   support
+#
+#           0       0.64      0.59      0.62        27
+#           1       0.66      0.70      0.68        30
+#
+# avg / total       0.65      0.65      0.65        57
+#
+# {'alpha': 1, 'fit_prior': False}
+#              precision    recall  f1-score   support
+#
+#           0       0.73      0.64      0.68        25
+#           1       0.74      0.81      0.77        31
+#
+# avg / total       0.73      0.73      0.73        56
+#
+# {'alpha': 5, 'fit_prior': True}
+#              precision    recall  f1-score   support
+#
+#           0       0.56      0.60      0.58        25
+#           1       0.66      0.61      0.63        31
+#
+# avg / total       0.61      0.61      0.61        56
+#
+# {'alpha': 5, 'fit_prior': False}
+#              precision    recall  f1-score   support
+#
+#           0       0.59      0.52      0.55        33
+#           1       0.41      0.48      0.44        23
+#
+# avg / total       0.51      0.50      0.50        56
+#
+# {'alpha': 5, 'fit_prior': False}
+#              precision    recall  f1-score   support
+#
+#           0       0.66      0.61      0.63        31
+#           1       0.56      0.60      0.58        25
+#
+# avg / total       0.61      0.61      0.61        56
+
+
 print(np.mean(fscores))
+# 0.628663303329
 tx = test_corpus.apply(lambda x: x["Left context"] + " " + x["Right context"], axis=1)
 tx = tx.apply(lambda x: preprocess(x))
 tx = encode(tx, vocab)
@@ -74,3 +132,10 @@ y_pred = model.predict(tx)
 print(y_pred)
 print(classification_report(ty, y_pred))
 
+# [1 1 0 0 1 1 1 1]
+#              precision    recall  f1-score   support
+#
+#           0       1.00      0.50      0.67         4
+#           1       0.67      1.00      0.80         4
+#
+# avg / total       0.83      0.75      0.73         8
