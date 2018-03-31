@@ -1,5 +1,4 @@
 import pandas as pd
-from sklearn.svm import SVC
 from sklearn.naive_bayes import BernoulliNB
 from sklearn.decomposition import PCA
 import numpy as np
